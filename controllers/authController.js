@@ -17,6 +17,8 @@ const transporter = nodemailer.createTransport({
     rejectUnauthorized: false,
     minVersion: "TLSv1.2",
   },
+  logger: true,
+  debug: true,
 });
 
 // Add this new function for SMTP connection verification

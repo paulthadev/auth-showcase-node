@@ -3,11 +3,11 @@ const config = require("../config/variables");
 
 const transporter = nodemailer.createTransport({
   host: "gotipmi.com",
-  port: 587,
-  secure: false,
+  port: 465,
+  secure: true,
   auth: {
-    user: "noreply@gotipmi.com",
-    pass: "pjq#c8#FLNMGe$u",
+    user: config.EMAIL_USER,
+    pass: config.EMAIL_PASS,
   },
   tls: {
     rejectUnauthorized: false,

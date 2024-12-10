@@ -1,8 +1,11 @@
 const nodemailer = require("nodemailer");
 const config = require("../config/variables");
 
+console.log("config.EMAIL_USER", config.EMAIL_USER);
+console.log("config.EMAIL_PASS", config.EMAIL_PASS);
+
 const transporter = nodemailer.createTransport({
-  host: "gotipmi.com",
+  host: "mail.gotipmi.com",
   port: 587,
   secure: false,
   auth: {
@@ -51,6 +54,8 @@ const testEmailSend = async () => {
       stack: error.stack,
       response: error.response,
     });
+    console.log("config.EMAIL_USER", config.EMAIL_USER);
+    console.log("config.EMAIL_PASS", config.EMAIL_PASS);
     return false;
   }
 };

@@ -37,33 +37,33 @@ const verifySmtpConnection = async () => {
   }
 };
 
-const testSmtpConnection = async () => {
-  try {
-    // Verify connection
-    await transporter.verify();
-    console.log("SMTP Connection Successful");
+// const testSmtpConnection = async () => {
+//   try {
+//     // Verify connection
+//     await transporter.verify();
+//     console.log("SMTP Connection Successful");
 
-    // Attempt to send a test email
-    const testInfo = await transporter.sendMail({
-      from: config.EMAIL_USER,
-      to: config.EMAIL_USER,
-      subject: "SMTP Test",
-      text: "SMTP connection test",
-    });
+//     // Attempt to send a test email
+//     const testInfo = await transporter.sendMail({
+//       from: config.EMAIL_USER,
+//       to: config.EMAIL_USER,
+//       subject: "SMTP Test",
+//       text: "SMTP connection test",
+//     });
 
-    console.log("Test Email Sent:", testInfo);
-    return true;
-  } catch (error) {
-    console.error("SMTP Connection Test Failed:", {
-      message: error.message,
-      code: error.code,
-      response: error.response,
-    });
-    return false;
-  }
-};
+//     console.log("Test Email Sent:", testInfo);
+//     return true;
+//   } catch (error) {
+//     console.error("SMTP Connection Test Failed:", {
+//       message: error.message,
+//       code: error.code,
+//       response: error.response,
+//     });
+//     return false;
+//   }
+// };
 
-// testSmtpConnection();
+// // testSmtpConnection();
 
 exports.register = async (req, res) => {
   try {

@@ -1,6 +1,9 @@
 const nodemailer = require("nodemailer");
 const config = require("../config/variables");
 
+console.log("config.EMAIL_USER", config.EMAIL_USER);
+console.log("config.EMAIL_PASS", config.EMAIL_PASS);
+
 const transporter = nodemailer.createTransport({
   host: "gotipmi.com",
   port: 465,

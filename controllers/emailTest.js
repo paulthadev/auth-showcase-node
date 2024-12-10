@@ -6,8 +6,8 @@ console.log("config.EMAIL_PASS", config.EMAIL_PASS);
 
 const transporter = nodemailer.createTransport({
   host: "mail.gotipmi.com",
-  port: 587,
-  secure: false,
+  port: 465,
+  secure: true,
   auth: {
     user: config.EMAIL_USER,
     pass: config.EMAIL_PASS,
@@ -22,13 +22,10 @@ const transporter = nodemailer.createTransport({
 
 // Add this test function
 const testEmailSend = async () => {
-  console.log("config.EMAIL_USER", config.EMAIL_USER);
-  console.log("config.EMAIL_PASS", config.EMAIL_PASS);
-
   try {
     // First, verify the connection
     await transporter.verify();
-    console.log("SMTP Server connection verified successfully");
+    console.log("SMTP Server connection verified successfully 465");
 
     // Then attempt to send a test email
     const testResult = await transporter.sendMail({

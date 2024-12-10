@@ -6,12 +6,15 @@ const crypto = require("crypto");
 
 const transporter = nodemailer.createTransport({
   host: "gotipmi.com",
-  port: 465, // SMTP port for SSL/TLS
-  secure: true, // Use SSL/TLS
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  // Add this error logging
+  logger: true,
+  debug: true,
 });
 
 exports.register = async (req, res) => {
@@ -41,17 +44,26 @@ exports.register = async (req, res) => {
 
     await user.save();
 
-    // Send verification email
-    const verificationLink = `${process.env.FRONTEND_URL}/verify/${verificationToken}`;
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: "Verify Your Account",
-      html: `Click <a href="${verificationLink}">here</a> to verify your account.`,
-    });
+    // Send verification email with more robust error handling
+    try {
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: "Verify Your Account",
+        html: `Click <a href="${verificationLink}">here</a> to verify your account.`,
+      });
+    } catch (emailError) {
+      console.error("Email sending error:", emailError);
+      // Optionally, you might want to handle email send failures differently
+      return res.status(500).json({
+        message: "User registered, but failed to send verification email",
+        error: emailError.message,
+      });
+    }
 
     res.status(201).json({ message: "User registered. Check your email." });
   } catch (error) {
+    console.error("Registration error:", error);
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };

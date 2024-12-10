@@ -10,8 +10,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: "noreply@gotipmi.com",
-    pass: "pjq#c8#FLNMGe$u",
+    user: config.EMAIL_USER,
+    pass: config.EMAIL_PASS,
   },
   tls: {
     rejectUnauthorized: false,

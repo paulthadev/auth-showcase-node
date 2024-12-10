@@ -6,12 +6,12 @@ const crypto = require("crypto");
 const config = require("../config/variables");
 
 const transporter = nodemailer.createTransport({
-  host: "gotipmi.com",
+  host: "mail.gotipmi.com",
   port: 465,
   secure: true,
   auth: {
-    user: config.EMAIL_USER,
-    pass: config.EMAIL_PASS,
+    user: "noreply@gotipmi.com",
+    pass: "pjq#c8#FLNMGe$u",
   },
   tls: {
     rejectUnauthorized: false,

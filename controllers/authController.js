@@ -44,6 +44,11 @@ exports.register = async (req, res) => {
 
     await user.save();
 
+    // Define verificationLink AFTER saving the user
+    const verificationLink = `${process.env.FRONTEND_URL}/verify/${verificationToken}`;
+
+    console.log(verificationLink);
+
     // Send verification email with more robust error handling
     try {
       await transporter.sendMail({

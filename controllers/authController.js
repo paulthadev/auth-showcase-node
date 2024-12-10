@@ -63,7 +63,7 @@ const testSmtpConnection = async () => {
   }
 };
 
-testSmtpConnection();
+// testSmtpConnection();
 
 exports.register = async (req, res) => {
   try {

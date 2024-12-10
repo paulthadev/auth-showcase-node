@@ -1,13 +1,10 @@
 const nodemailer = require("nodemailer");
 const config = require("../config/variables");
 
-console.log("config.EMAIL_USER", config.EMAIL_USER);
-console.log("config.EMAIL_PASS", config.EMAIL_PASS);
-
 const transporter = nodemailer.createTransport({
   host: "gotipmi.com",
-  port: 465,
-  secure: true,
+  port: 587,
+  secure: false,
   auth: {
     user: config.EMAIL_USER,
     pass: config.EMAIL_PASS,
@@ -22,6 +19,9 @@ const transporter = nodemailer.createTransport({
 
 // Add this test function
 const testEmailSend = async () => {
+  console.log("config.EMAIL_USER", config.EMAIL_USER);
+  console.log("config.EMAIL_PASS", config.EMAIL_PASS);
+
   try {
     // First, verify the connection
     await transporter.verify();

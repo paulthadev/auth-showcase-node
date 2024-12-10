@@ -7,8 +7,8 @@ const config = require("../config/variables");
 
 const transporter = nodemailer.createTransport({
   host: "mail.gotipmi.com",
-  port: 465,
-  secure: true,
+  port: 587,
+  secure: false,
   auth: {
     user: "noreply@gotipmi.com",
     pass: "pjq#c8#FLNMGe$u",

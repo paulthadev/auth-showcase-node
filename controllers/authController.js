@@ -7,8 +7,8 @@ const config = require("../config/variables");
 
 const transporter = nodemailer.createTransport({
   host: "mail.gotipmi.com",
-  port: 587,
-  secure: false,
+  port: 465,
+  secure: true,
   auth: {
     user: config.EMAIL_USER,
     pass: config.EMAIL_PASS,
@@ -17,8 +17,6 @@ const transporter = nodemailer.createTransport({
     rejectUnauthorized: false,
     minVersion: "TLSv1.2",
   },
-  logger: true,
-  debug: true,
 });
 
 // Add this new function for SMTP connection verification
